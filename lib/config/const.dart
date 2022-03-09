@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:logger/logger.dart';
 
 bool get isTesting => Platform.environment.containsKey('FLUTTER_TEST');
