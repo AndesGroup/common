@@ -1,4 +1,5 @@
 library common;
+export '../utils/helpers.dart';
 
 /// A Calculator.
 class Calculator {

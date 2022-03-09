@@ -1,0 +1,20 @@
+import 'dart:io';
+
+import 'package:logger/logger.dart';
+
+bool get isTesting => Platform.environment.containsKey('FLUTTER_TEST');
+final logger = Logger(
+  printer: PrettyPrinter(
+      methodCount: 10,
+      // number of method calls to be displayed
+      errorMethodCount: 10,
+      // number of method calls if stacktrace is provided
+      lineLength: 120,
+      // width of the output
+      colors: true,
+      // Colorful log messages
+      printEmojis: true,
+      // Print an emoji for each log message
+      printTime: false // Should each log print contain a timestamp
+      ),
+);
