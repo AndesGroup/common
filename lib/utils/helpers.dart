@@ -1,9 +1,17 @@
 import 'package:validators/validators.dart';
 
+import '../config/const.dart';
+
 enum MediaType {
   network,
   asset,
   file,
+}
+
+void debug(dynamic message, [dynamic error, StackTrace? stackTrace]) {
+  if (isTesting == false) {
+    logger.d(message, error, stackTrace);
+  }
 }
 
 MediaType getMediaType(String? mediaSrc) {
