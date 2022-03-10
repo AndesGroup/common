@@ -5,10 +5,12 @@ class DotWidget extends StatelessWidget {
     Key? key,
     required this.size,
     this.color,
+    this.child,
   }) : super(key: key);
 
   final double size;
   final Color? color;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class DotWidget extends StatelessWidget {
         color: color ?? Theme.of(context).colorScheme.primary,
         shape: BoxShape.circle,
       ),
+      child: child,
     );
   }
 }

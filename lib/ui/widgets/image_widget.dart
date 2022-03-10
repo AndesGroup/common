@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/ui/widgets/circle_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/const.dart';
 import '../../utils/helpers.dart';
-
 
 class ImageWidget extends StatelessWidget {
   // ignore: prefer_function_declarations_over_variables
@@ -31,6 +31,7 @@ class ImageWidget extends StatelessWidget {
     this.errorWidget,
     this.placeholder,
     this.color,
+    this.isCircle = false,
   }) : super(key: key);
 
   final String? imageUrl;
@@ -41,6 +42,7 @@ class ImageWidget extends StatelessWidget {
   final Widget Function(BuildContext, dynamic, dynamic)? errorWidget;
   final Widget Function(BuildContext)? placeholder;
   final Color? color;
+  final bool isCircle;
 
   Widget errorBuilder(BuildContext context, __, ___) {
     return errorWidget?.call(context, __, ___) ??
@@ -98,6 +100,9 @@ class ImageWidget extends StatelessWidget {
         errorBuilder: errorBuilder,
         frameBuilder: placeholder != null ? (context, _, __, ___) => placeholder!(context) : null,
       );
+    }
+    if (isCircle && image != null) {
+      image = CircleWidget(child: image);
     }
     if (image != null) {
       return ClipRRect(
