@@ -28,11 +28,13 @@ MediaType getMediaType(String? mediaSrc) {
     throw Exception('Invalid Media Type');
   }
 }
+
 T getRandomElement<T>(List<T> list) {
   final random = Random();
   var i = random.nextInt(list.length);
   return list[i];
 }
+
 ///////PARSER////////////
 List<T?>? parseList<T extends Object?>({
   required List<dynamic>? json,
@@ -99,3 +101,13 @@ Route slidePage(Widget child, {AxisDirection axisDirection = AxisDirection.right
   );
 }
 /////////////////////////////
+
+String? getNameFromEmail(String? email) {
+  if (email == null) {
+    return null;
+  }
+  if (email.contains('@')) {
+    return email.split('@')[0];
+  }
+  return null;
+}
