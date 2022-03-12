@@ -10,13 +10,15 @@ Future<void> showLoadingDialog(
     context: context,
     useRootNavigator: useRootNavigator,
     builder: (context) {
-      return const LoadingDialog();
+      return const LoadingWidget();
     },
   );
 }
 
-class LoadingDialog extends StatelessWidget {
-  const LoadingDialog({Key? key}) : super(key: key);
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key, this.radius = 30, this.color = Colors.white}) : super(key: key);
+  final double radius;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
