@@ -19,7 +19,6 @@ extension ContextExtensions on BuildContext {
         ),
       ).closed.then((value) => onClosed);
   }
-
   showDialogFullscreenLoading(BuildContext context) {
     showDialog(
         context: context,
@@ -117,6 +116,7 @@ extension ContextExtensions on BuildContext {
     );
   }
 
+  /// Dùng để chuyển tới một màn hình khác
   Future<dynamic> push(Widget Function(BuildContext context) builder, {String? name}) {
     if (Platform.isAndroid) {
       return Navigator.of(this)
@@ -127,6 +127,7 @@ extension ContextExtensions on BuildContext {
     }
   }
 
+  /// Dùng để đóng màn hình hiển tại
   void pop([dynamic result]) {
     Navigator.of(this).pop(result);
   }
@@ -266,6 +267,7 @@ Future<T?> showDialogNotification<T>(BuildContext context, {String? message}) {
   );
 }
 
+/// Dùng để chuyển tới một màn hình mới
 Future<T?> push<T>(BuildContext context, Widget Function(BuildContext context) builder,
     {String? name}) {
   if (Platform.isAndroid) {
