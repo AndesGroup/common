@@ -1,3 +1,4 @@
+import 'package:common/ui/dialogs/dialogs.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,9 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Example'),
       ),
-      body: Column(
-        children: [],
-      ),
+      body: const LoadingWidget(),
     );
   }
 }

@@ -16,12 +16,12 @@ Future<void> showLoadingDialog(
 }
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key, this.radius = 30, this.color = Colors.white}) : super(key: key);
+  const LoadingWidget({Key? key, this.radius = 10, this.color}) : super(key: key);
   final double radius;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: CupertinoActivityIndicator(radius: 30, color: Colors.white));
+    return Center(child: CupertinoActivityIndicator(radius: radius, color: color));
   }
 }
