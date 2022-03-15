@@ -7,6 +7,13 @@ import 'package:flutter/material.dart';
 import '../../config/const.dart';
 import '../../utils/helpers.dart';
 
+/// {@template image_widget}
+/// Trả về hình ảnh tương ứng với [imageUrl] có thể là một URL hoặc một đường dẫn tới file ảnh trong
+///  thư mục assets, hoặc là đường dẫn trỏ tới file trong máy.
+/// 
+/// Nếu [imageUrl] không phải 3 loại phía trên, thì sẽ trả về [errorWidget], trong trường hợp không
+/// có [errorWidget] thì sẽ trả về [defaultError].
+/// {@endtemplate}
 class ImageWidget extends StatelessWidget {
   // ignore: prefer_function_declarations_over_variables
   static Widget Function(BuildContext, dynamic, dynamic) defaultError = (_, __, ___) => Container(
@@ -20,7 +27,7 @@ class ImageWidget extends StatelessWidget {
           ),
         ),
       );
-
+  /// {@macro image_widget}
   const ImageWidget({
     Key? key,
     required this.imageUrl,
