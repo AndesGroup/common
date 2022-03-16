@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 /// Lưu ý nên sử dụng thêm [key] để phân biệt trong trường hợp cùng cấp trên cây widget có từ 2
 /// widget này trở lên.
 /// {@endtemplate}
-class NavigatorBoundary extends StatelessWidget {
+class NavigatorBoundary extends StatefulWidget {
   /// {@macro navigator_boundary}
   const NavigatorBoundary({
     Key? key,
@@ -17,9 +17,28 @@ class NavigatorBoundary extends StatelessWidget {
   final Widget child;
 
   @override
+  State<NavigatorBoundary> createState() => _NavigatorBoundaryState();
+}
+
+class _NavigatorBoundaryState extends State<NavigatorBoundary> {
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
+  @override
   Widget build(BuildContext context) {
-    return Navigator(onGenerateRoute: (_) {
-      return defaultPage(child);
-    });
+    return WillPopScope(
+      onWillPop: () {
+        if (_navigatorKey.currentState?.canPop() == true) {
+          _navigatorKey.currentState?.pop();
+          return Future.value(false);
+        } else {
+          return Future.value(true);
+        }
+      },
+      child: Navigator(
+          key: _navigatorKey,
+          onGenerateRoute: (_) {
+            return defaultPage(widget.child);
+          }),
+    );
   }
 }
