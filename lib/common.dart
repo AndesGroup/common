@@ -1,6 +1,7 @@
 library common;
 
 export '../config/const.dart';
+export '../config/styles.dart';
 export '../utils/helpers.dart';
 export '../ui/dialogs/dialogs.dart';
 export '../ui/widgets/exporter.dart';
