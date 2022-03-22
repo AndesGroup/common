@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Future<void> showLoadingDialog(
@@ -16,12 +15,15 @@ Future<void> showLoadingDialog(
 }
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key, this.radius = 10, this.color}) : super(key: key);
-  final double radius;
-  final Color? color;
+  const LoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: CupertinoActivityIndicator(radius: radius, color: color));
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 }
