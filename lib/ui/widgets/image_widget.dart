@@ -33,7 +33,7 @@ class ImageWidget extends StatelessWidget {
     required this.imageUrl,
     this.width,
     this.height,
-    this.fit,
+    this.fit = BoxFit.cover,
     this.radius = 0,
     this.errorWidget,
     this.placeholder,
@@ -44,7 +44,7 @@ class ImageWidget extends StatelessWidget {
   final String? imageUrl;
   final double? width;
   final double? height;
-  final BoxFit? fit;
+  final BoxFit fit;
   final double radius;
   final Widget Function(BuildContext, dynamic, dynamic)? errorWidget;
   final Widget Function(BuildContext)? placeholder;
