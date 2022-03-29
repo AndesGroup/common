@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Future<void> showLoadingDialog(
   BuildContext context, {
-  bool useRootNavigator = true,
+  bool useRootNavigator = false,
 }) {
   return showDialog(
     barrierDismissible: false,
