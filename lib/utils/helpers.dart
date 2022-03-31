@@ -22,7 +22,7 @@ MediaType getMediaType(String? mediaSrc) {
     return MediaType.network;
   } else if (mediaSrc!.startsWith('assets')) {
     return MediaType.asset;
-  } else if (mediaSrc.startsWith('files')) {
+  } else if (mediaSrc.startsWith('files') || mediaSrc.startsWith('/')) {
     return MediaType.file;
   } else {
     throw Exception('Invalid Media Type');
