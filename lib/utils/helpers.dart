@@ -40,7 +40,9 @@ List<T?>? parseList<T extends Object?>({
   required List<dynamic>? json,
   required T Function(Map<String, dynamic> json) fromJson,
 }) {
-  return (json)?.map((e) => e == null ? null : fromJson(e as Map<String, dynamic>)).toList();
+  return (json)
+      ?.map((e) => e == null ? null : fromJson(e as Map<String, dynamic>))
+      .toList();
 }
 
 List<T> parseListNotNull<T extends Object?>({
@@ -54,7 +56,8 @@ Map<String, T?> parseMap<T extends Object?>({
   required Map<String, dynamic> json,
   required T Function(Map<String, dynamic> json) fromJson,
 }) {
-  return json.map((k, e) => MapEntry(k, e == null ? null : fromJson(e as Map<String, dynamic>)));
+  return json.map((k, e) =>
+      MapEntry(k, e == null ? null : fromJson(e as Map<String, dynamic>)));
 }
 
 Map<String, T> parseMapNotNull<T extends Object?>({
@@ -79,11 +82,18 @@ Offset offsetFromDirection(AxisDirection axisDirection) {
   }
 }
 
-Route defaultPage(Widget child) {
-  return MaterialPageRoute(builder: (_) => child);
+Future<T?> push<T>(BuildContext context, Widget page, {String? routeName}) {
+  return Navigator.push<T>(context, defaultPage<T>(page, routeName: routeName));
 }
 
-Route slidePage(Widget child, {AxisDirection axisDirection = AxisDirection.right}) {
+Route<T> defaultPage<T>(Widget child, {String? routeName}) {
+  final routeSetting =
+      routeName != null ? RouteSettings(name: routeName) : null;
+  return MaterialPageRoute(builder: (_) => child, settings: routeSetting);
+}
+
+Route slidePage(Widget child,
+    {AxisDirection axisDirection = AxisDirection.right}) {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => child,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {

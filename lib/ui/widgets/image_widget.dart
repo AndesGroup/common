@@ -10,23 +10,25 @@ import '../../utils/helpers.dart';
 /// {@template image_widget}
 /// Trả về hình ảnh tương ứng với [imageUrl] có thể là một URL hoặc một đường dẫn tới file ảnh trong
 ///  thư mục assets, hoặc là đường dẫn trỏ tới file trong máy.
-/// 
+///
 /// Nếu [imageUrl] không phải 3 loại phía trên, thì sẽ trả về [errorWidget], trong trường hợp không
 /// có [errorWidget] thì sẽ trả về [defaultError].
 /// {@endtemplate}
 class ImageWidget extends StatelessWidget {
   // ignore: prefer_function_declarations_over_variables
-  static Widget Function(BuildContext, dynamic, dynamic) defaultError = (_, __, ___) => Container(
-        width: 129,
-        height: 116,
-        color: Colors.grey,
-        child: const Center(
-          child: Text(
-            'Image not found',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
+  static Widget Function(BuildContext, dynamic, dynamic) defaultError =
+      (_, __, ___) => Container(
+            width: 129,
+            height: 116,
+            color: Colors.grey,
+            child: const Center(
+              child: Text(
+                'Image not found',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+
   /// {@macro image_widget}
   const ImageWidget({
     Key? key,
@@ -71,13 +73,13 @@ class ImageWidget extends StatelessWidget {
     if (imageUrl == null || imageUrl!.isEmpty) {
       return errorBuilder(context, null, null);
     }
-    final _type = getMediaType(imageUrl);
-    if (isTesting && _type == MediaType.network) {
+    final type = getMediaType(imageUrl);
+    if (isTesting && type == MediaType.network) {
       // ngăn trường hợp test lỗi do khi test không thể sử dụng internet
       return errorBuilder(context, null, null);
     }
     Widget? image;
-    if (_type == MediaType.network) {
+    if (type == MediaType.network) {
       image = CachedNetworkImage(
         imageUrl: imageUrl!,
         width: width,
@@ -85,9 +87,10 @@ class ImageWidget extends StatelessWidget {
         fit: fit,
         color: color,
         errorWidget: errorBuilder,
-        placeholder: placeholder != null ? (context, _) => placeholder!(context) : null,
+        placeholder:
+            placeholder != null ? (context, _) => placeholder!(context) : null,
       );
-    } else if (_type == MediaType.asset) {
+    } else if (type == MediaType.asset) {
       image = Image.asset(
         imageUrl!,
         width: width,
@@ -95,9 +98,11 @@ class ImageWidget extends StatelessWidget {
         fit: fit,
         color: color,
         errorBuilder: errorBuilder,
-        frameBuilder: placeholder != null ? (context, _, __, ___) => placeholder!(context) : null,
+        frameBuilder: placeholder != null
+            ? (context, _, __, ___) => placeholder!(context)
+            : null,
       );
-    } else if (_type == MediaType.file) {
+    } else if (type == MediaType.file) {
       image = Image.file(
         File(imageUrl!),
         width: width,
@@ -105,7 +110,9 @@ class ImageWidget extends StatelessWidget {
         fit: fit,
         color: color,
         errorBuilder: errorBuilder,
-        frameBuilder: placeholder != null ? (context, _, __, ___) => placeholder!(context) : null,
+        frameBuilder: placeholder != null
+            ? (context, _, __, ___) => placeholder!(context)
+            : null,
       );
     }
     if (isCircle && image != null) {

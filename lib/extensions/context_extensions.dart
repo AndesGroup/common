@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 
 extension ContextExtensions on BuildContext {
   showSnackBar(String message,
-      {Color? backgroundColor, int? milliseconds, SnackBarAction? action, Function? onClosed}) {
+      {Color? backgroundColor,
+      int? milliseconds,
+      SnackBarAction? action,
+      Function? onClosed}) {
     return ScaffoldMessenger.of(this)
       ..hideCurrentSnackBar()
       ..showSnackBar(
@@ -19,6 +22,7 @@ extension ContextExtensions on BuildContext {
         ),
       ).closed.then((value) => onClosed);
   }
+
   showDialogFullscreenLoading(BuildContext context) {
     showDialog(
         context: context,
@@ -93,14 +97,14 @@ extension ContextExtensions on BuildContext {
                       onPressed: () {
                         pop();
                       },
-                      child: const Text(
-                        'OK',
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      ),
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
+                      ),
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -117,13 +121,14 @@ extension ContextExtensions on BuildContext {
   }
 
   /// Dùng để chuyển tới một màn hình khác
-  Future<dynamic> push(Widget Function(BuildContext context) builder, {String? name}) {
+  Future<dynamic> push(Widget Function(BuildContext context) builder,
+      {String? name}) {
     if (Platform.isAndroid) {
-      return Navigator.of(this)
-          .push(MaterialPageRoute(builder: builder, settings: RouteSettings(name: name)));
+      return Navigator.of(this).push(MaterialPageRoute(
+          builder: builder, settings: RouteSettings(name: name)));
     } else {
-      return Navigator.of(this)
-          .push(CupertinoPageRoute(builder: builder, settings: RouteSettings(name: name)));
+      return Navigator.of(this).push(CupertinoPageRoute(
+          builder: builder, settings: RouteSettings(name: name)));
     }
   }
 
@@ -136,13 +141,15 @@ extension ContextExtensions on BuildContext {
     Navigator.of(this).popUntil((route) => route.isFirst);
   }
 
-  Future<dynamic> pushReplacement(Widget Function(BuildContext context) builder, {dynamic result}) {
+  Future<dynamic> pushReplacement(Widget Function(BuildContext context) builder,
+      {dynamic result}) {
     if (Platform.isAndroid) {
       return Navigator.of(this)
           .pushReplacement(MaterialPageRoute(builder: builder), result: result);
     } else {
-      return Navigator.of(this)
-          .pushReplacement(CupertinoPageRoute(builder: builder), result: result);
+      return Navigator.of(this).pushReplacement(
+          CupertinoPageRoute(builder: builder),
+          result: result);
     }
   }
 }
@@ -244,14 +251,14 @@ Future<T?> showDialogNotification<T>(BuildContext context, {String? message}) {
                     onPressed: () {
                       pop(context);
                     },
-                    child: const Text(
-                      'OK',
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
+                    ),
+                    child: const Text(
+                      'OK',
+                      style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
@@ -267,18 +274,6 @@ Future<T?> showDialogNotification<T>(BuildContext context, {String? message}) {
   );
 }
 
-/// Dùng để chuyển tới một màn hình mới
-Future<T?> push<T>(BuildContext context, Widget Function(BuildContext context) builder,
-    {String? name}) {
-  if (Platform.isAndroid) {
-    return Navigator.of(context)
-        .push<T>(MaterialPageRoute(builder: builder, settings: RouteSettings(name: name)));
-  } else {
-    return Navigator.of(context)
-        .push<T>(CupertinoPageRoute(builder: builder, settings: RouteSettings(name: name)));
-  }
-}
-
 void pop(BuildContext context, [dynamic result]) {
   Navigator.of(context).pop(result);
 }
@@ -291,10 +286,12 @@ Future<T?> pushReplacement<T extends Object?, T0 extends Object?>(
     BuildContext context, Widget Function(BuildContext context) builder,
     {T0? result}) {
   if (Platform.isAndroid) {
-    return Navigator.of(context)
-        .pushReplacement<T, T0>(MaterialPageRoute(builder: builder), result: result);
+    return Navigator.of(context).pushReplacement<T, T0>(
+        MaterialPageRoute(builder: builder),
+        result: result);
   } else {
-    return Navigator.of(context)
-        .pushReplacement<T, T0>(CupertinoPageRoute(builder: builder), result: result);
+    return Navigator.of(context).pushReplacement<T, T0>(
+        CupertinoPageRoute(builder: builder),
+        result: result);
   }
 }
