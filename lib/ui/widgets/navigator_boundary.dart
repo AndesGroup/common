@@ -1,4 +1,4 @@
-import 'package:common/utils/helpers.dart';
+import 'package:andesgroup_common/utils/helpers.dart';
 import 'package:flutter/material.dart';
 
 /// {@template navigator_boundary}

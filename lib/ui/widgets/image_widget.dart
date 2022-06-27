@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:andesgroup_common/ui/widgets/circle_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:common/ui/widgets/circle_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/const.dart';
