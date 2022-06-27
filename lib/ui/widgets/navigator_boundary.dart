@@ -28,7 +28,7 @@ class _NavigatorBoundaryState extends State<NavigatorBoundary> {
     return WillPopScope(
       onWillPop: () {
         if (_navigatorKey.currentState?.canPop() == true) {
-          _navigatorKey.currentState?.pop();
+          _navigatorKey.currentState?.maybePop();
           return Future.value(false);
         } else {
           return Future.value(true);
