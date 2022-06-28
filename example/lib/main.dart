@@ -29,6 +29,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    showAlertDialog(context, actions: (dismis) {
+      dismis();
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Example'),

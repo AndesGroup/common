@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/navigator_helper.dart';
+
 extension ContextExtensions on BuildContext {
   showSnackBar(String message,
       {Color? backgroundColor,
@@ -272,26 +274,4 @@ Future<T?> showDialogNotification<T>(BuildContext context, {String? message}) {
       );
     },
   );
-}
-
-void pop(BuildContext context, [dynamic result]) {
-  Navigator.of(context).pop(result);
-}
-
-void popToRoot(BuildContext context) {
-  Navigator.of(context).popUntil((route) => route.isFirst);
-}
-
-Future<T?> pushReplacement<T extends Object?, T0 extends Object?>(
-    BuildContext context, Widget Function(BuildContext context) builder,
-    {T0? result}) {
-  if (Platform.isAndroid) {
-    return Navigator.of(context).pushReplacement<T, T0>(
-        MaterialPageRoute(builder: builder),
-        result: result);
-  } else {
-    return Navigator.of(context).pushReplacement<T, T0>(
-        CupertinoPageRoute(builder: builder),
-        result: result);
-  }
 }

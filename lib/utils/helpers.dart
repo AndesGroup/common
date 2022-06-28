@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 
 import '../config/const.dart';
@@ -67,50 +66,6 @@ Map<String, T> parseMapNotNull<T extends Object?>({
   return json.map((k, e) => MapEntry(k, fromJson(e as Map<String, dynamic>)));
 }
 ////////////////////////
-
-///////Transition////////////
-Offset offsetFromDirection(AxisDirection axisDirection) {
-  switch (axisDirection) {
-    case AxisDirection.up:
-      return const Offset(0.0, 1.0);
-    case AxisDirection.right:
-      return const Offset(1.0, 0.0);
-    case AxisDirection.down:
-      return const Offset(0.0, -1.0);
-    case AxisDirection.left:
-      return const Offset(-1.0, 0.0);
-  }
-}
-
-Future<T?> push<T>(BuildContext context, Widget page, {String? routeName}) {
-  return Navigator.push<T>(context, defaultPage<T>(page, routeName: routeName));
-}
-
-Route<T> defaultPage<T>(Widget child, {String? routeName}) {
-  final routeSetting =
-      routeName != null ? RouteSettings(name: routeName) : null;
-  return MaterialPageRoute(builder: (_) => child, settings: routeSetting);
-}
-
-Route slidePage(Widget child,
-    {AxisDirection axisDirection = AxisDirection.right}) {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final begin = offsetFromDirection(axisDirection);
-      const end = Offset.zero;
-      const curve = Curves.ease;
-
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
-}
-/////////////////////////////
 
 String? getNameFromEmail(String? email) {
   if (email == null) {
