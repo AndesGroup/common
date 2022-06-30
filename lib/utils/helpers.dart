@@ -1,5 +1,9 @@
 import 'dart:math';
+import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:validators/validators.dart';
 
 import '../config/const.dart';
@@ -32,6 +36,11 @@ T getRandomElement<T>(List<T> list) {
   final random = Random();
   var i = random.nextInt(list.length);
   return list[i];
+}
+
+/// random int from [start,end]
+int getRandomRange(int start, int end) {
+  return start + Random().nextInt(end - start + 1);
 }
 
 ///////PARSER////////////
@@ -75,4 +84,24 @@ String? getNameFromEmail(String? email) {
     return email.split('@')[0];
   }
   return null;
+}
+
+Future<bool?> toast(
+  String value, {
+  Color? backgroundColor,
+  Color? textColor,
+  double? fontSize = 16,
+}) {
+  return Fluttertoast.showToast(
+      msg: value,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: backgroundColor,
+      textColor: textColor,
+      fontSize: fontSize);
+}
+
+Future<void> copyToClipboard(String value) {
+  return Clipboard.setData(ClipboardData(text: value));
 }
