@@ -5,17 +5,19 @@ Future<T?> showAlertDialog<T>(
   BuildContext context, {
   String? title,
   String? content,
-  List<Widget>? Function(VoidCallback dismiss)? actions,
-  barrierDismissible = true,
+  List<Widget> Function(BuildContext)? actions,
+  bool barrierDismissible = true,
+  bool useRootNavigator = false,
 }) {
   return showDialog<T>(
     context: context,
     barrierDismissible: barrierDismissible,
+    useRootNavigator: useRootNavigator,
     builder: (context) {
       return AlertDialog(
         title: title != null ? Text(title) : null,
         content: content != null ? Text(content) : null,
-        actions: actions?.call(Navigator.of(context).pop),
+        actions: actions?.call(context),
       );
     },
   );

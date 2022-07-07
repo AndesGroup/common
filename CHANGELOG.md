@@ -1,3 +1,9 @@
+## 1.0.6
+* update alert_dialog
+
+## 1.0.5
+* export keyboard dismisser
+
 ## 1.0.4
 * fix chars
 
