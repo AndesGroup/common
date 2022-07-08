@@ -1,3 +1,10 @@
+## 1.0.8
+* add TimeOfDayConverterNotNull
+
+## 1.0.7
+* add TimeOfDay,Duration extension
+* add TimeOfDayConverter
+
 ## 1.0.6
 * update alert_dialog
 
