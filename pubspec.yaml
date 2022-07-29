@@ -1,6 +1,6 @@
 name: andesgroup_common
 description: A common packages use by AndesGroup.
-version: 1.0.8
+version: 1.0.9
 homepage: https://github.com/AndesGroup/common
 repository: https://github.com/AndesGroup/common
 
@@ -15,7 +15,7 @@ dependencies:
   validators: ^3.0.0
   intl: ^0.17.0
   shimmer: ^2.0.0
-  freezed_annotation: ^2.0.3
+  freezed_annotation: ^2.1.0
   fluttertoast: ^8.0.9
   keyboard_dismisser: ^3.0.0
 
